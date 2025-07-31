@@ -1,0 +1,561 @@
+.phone-comparison-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  /* padding: 20px; */
+}
+
+.phone-comparison-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.comparison-header {
+  text-align: center;
+  /* padding: 30px 30px 0 30px; */
+  color: white;
+  margin-top: -8vh;
+}
+
+.comparison-header h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+  background: linear-gradient(45deg, #fff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.comparison-content {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+  align-items: flex-start;
+}
+
+.phone-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 25px;
+  color: white;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  margin-top: -1vh;
+}
+
+.phone-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.phone-card.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 400px;
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.phone-card.not-found h3 {
+  color: #ff6b6b;
+  margin-bottom: 15px;
+}
+
+.phone-card.not-found p {
+  color: #ffcccc;
+  margin-bottom: 20px;
+}
+
+.showroom-info {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.showroom-info h4 {
+  color: #4ade80;
+  margin-bottom: 10px;
+}
+
+.showroom-info p {
+  margin: 5px 0;
+  /* color: white; */
+}
+
+.phone-card-header {
+  /* margin-top: -1vh; */
+  text-align: center;
+  /* margin-bottom: 20px; */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 15px;
+}
+
+.phone-card-header h3 {
+  font-size: 1.5rem;
+  /* margin: 0 0 10px 0; */
+  color: #f0f0f0;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #4ade80;
+  margin: 0;
+}
+
+.phone-card-image {
+  text-align: center;
+  /* margin-bottom: 20px; */
+  margin-top: -15vh;
+}
+
+.phone-image-container {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.phone-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  background: #fff;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+
+.phone-image,
+.phone-card-image img {
+  width: 150px !important;
+  height: 150px !important;
+  object-fit: contain !important;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  background: #fff;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+
+.phone-card-specs {
+  margin-bottom: 20px;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+}
+
+.spec-label {
+  font-weight: bold;
+  color: #e0e0e0;
+  flex: 0 0 80px;
+  font-size: 0.9rem;
+}
+
+.spec-value {
+  color: white;
+  text-align: right;
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.phone-card-location {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.phone-card-location h4 {
+  color: #4ade80;
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+}
+
+.phone-card-location p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+.phone-card-location strong {
+  color: #f0f0f0;
+}
+
+.vs-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 80px;
+}
+
+.vs-divider span {
+  background: linear-gradient(45deg, #4ade80, #22d3ee);
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 15px 20px;
+  border-radius: 50%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .comparison-content {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .vs-divider {
+    flex: none;
+    margin: 10px 0;
+  }
+  
+  .vs-divider span {
+    font-size: 1.2rem;
+    padding: 10px 15px;
+  }
+  
+  .comparison-header h2 {
+    font-size: 2rem;
+  }
+  
+  .phone-card-header h3 {
+    font-size: 1.3rem;
+  }
+  
+  .price {
+    font-size: 1.1rem;
+  }
+}
+
+/* Inline styles for phone comparison when used inline */
+.phone-comparison-inline {
+  min-height: calc(100vh - 120px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-comparison-inline .comparison-header {
+  text-align: center;
+  padding: 15px;
+  color: #1a1a1a;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.phone-comparison-inline .comparison-header h2 {
+  color: #1a1a1a;
+  background: none;
+  -webkit-text-fill-color: #1a1a1a;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.phone-comparison-inline .comparison-content {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  align-items: flex-start;
+  flex: 1;
+  overflow: visible;
+}
+
+.phone-comparison-inline .phone-card {
+  flex: 1;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 15px;
+  color: #1a1a1a;
+  backdrop-filter: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: visible;
+  height: auto;
+  z-index: 1001;
+}
+
+.phone-comparison-inline .phone-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.phone-comparison-inline .phone-card.not-found {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.phone-comparison-inline .phone-card-header {
+  text-align: center;
+  margin-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 10px;
+}
+
+.phone-comparison-inline .phone-card-header h3 {
+  color: #1a1a1a;
+  font-size: 1.2rem;
+  margin: 0 0 8px 0;
+}
+
+.phone-comparison-inline .price {
+  color: #22c55e;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.phone-comparison-inline .phone-card-image {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.phone-comparison-inline .phone-image-container {
+  width: 120px;
+  height: 140px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 2px solid #e9ecef;
+}
+
+.phone-comparison-inline .phone-image,
+.phone-comparison-inline .phone-card-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+.phone-comparison-inline .phone-card-specs {
+  margin-bottom: 15px;
+}
+
+.phone-comparison-inline .spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.phone-comparison-inline .spec-row:last-child {
+  border-bottom: none;
+}
+
+.phone-comparison-inline .spec-label {
+  color: #64748b;
+  font-weight: 600;
+  flex: 0 0 70px;
+  font-size: 0.8rem;
+}
+
+.phone-comparison-inline .spec-value {
+  color: #1a1a1a;
+  text-align: right;
+  flex: 1;
+  font-size: 0.8rem;
+}
+
+.phone-comparison-inline .phone-card-location {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.phone-comparison-inline .phone-card-location h4 {
+  color: #22c55e;
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+}
+
+.phone-comparison-inline .phone-card-location p {
+  color: #1a1a1a;
+  margin: 3px 0;
+  font-size: 0.8rem;
+}
+
+.phone-comparison-inline .phone-card-location strong {
+  color: #22c55e;
+}
+
+.phone-comparison-inline .vs-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 60px;
+}
+
+.phone-comparison-inline .vs-divider span {
+  background: linear-gradient(45deg, #22c55e, #06b6d4);
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 10px 15px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.phone-comparison-inline .showroom-info {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e9ecef;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.phone-comparison-inline .showroom-info h4 {
+  color: #22c55e;
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+}
+
+.phone-comparison-inline .showroom-info p {
+  color: #1a1a1a;
+  margin: 3px 0;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 480px) {
+  .phone-comparison-overlay {
+    padding: 10px;
+  }
+  
+  .comparison-content {
+    padding: 15px;
+  }
+  
+  .comparison-header {
+    padding: 20px 15px 0 15px;
+  }
+  
+  .comparison-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .phone-card {
+    padding: 20px;
+  }
+
+  .phone-comparison-inline {
+    height: auto;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .phone-comparison-inline .comparison-content {
+    flex-direction: column;
+    gap: 15px;
+    overflow: visible;
+  }
+  
+  .phone-comparison-inline .vs-divider {
+    flex: none;
+    margin: 10px 0;
+  }
+  
+  .phone-comparison-inline .phone-card {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .phone-comparison-inline .phone-image-container {
+    width: 100px;
+    height: 120px;
+  }
+
+  .phone-comparison-inline .phone-card-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .phone-comparison-inline .price {
+    font-size: 1rem;
+  }
+}
